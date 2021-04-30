@@ -14,7 +14,7 @@ const router = Router()
 let someId = ''
 let categoryG = {}
 
-let upload = multer({dest:`./client/public/documents`})
+let upload = multer({dest:`./client/build/documents`})
 
 
 router.get('/documents-categories', async (req, res) => {
@@ -46,7 +46,7 @@ router.post('/update/:id', async (req, res) => {
     try {
       const category = await documentCategory.findById(req.params.id)
       const {title} = req.body
-      fs.rename(`client/public/documents/${category.title}`,`client/public/documents/${title}`,()=>{console.log('callback rename')})
+      fs.rename(`client/build/documents/${category.title}`,`client/build/documents/${title}`,()=>{console.log('callback rename')})
      
       category.title = title
       
@@ -65,17 +65,17 @@ router.post('/update/:id', async (req, res) => {
 router.post('/delete/:id', async (req, res) => {
     try {
       let category = await documentCategory.findById(req.params.id)
-      const directory = `client/public/documents/${category.title}`
+      const directory = `client/build/documents/${category.title}`
 
       fs.readdir(directory, (err, files) => {
-      if (err) throw err
+      if (err) console.log(err)
 
       for (const file of files) {
           fs.unlink(path.join(directory, file), err => {
-          if (err) throw err
+          if (err) console.log(err)
       })
     }
-    fs.rmdir(`client/public/documents/${category.title}`,()=>(console.log('deleted')))
+    fs.rmdir(`client/build/documents/${category.title}`,()=>(console.log('deleted')))
   })
      
       category = await documentCategory.findByIdAndDelete(req.params.id)
@@ -112,7 +112,7 @@ router.post('/create',
             category.title = title
             
             await category.save()
-            fs.mkdir(`client/public/documents/${category.title}`,()=>{console.log('add folder')})
+            fs.mkdir(`client/build/documents/${category.title}`,()=>{console.log('add folder')})
             someId = category._id
             
 
@@ -174,7 +174,7 @@ router.post('/create',
         document.save()
         
         
-        fs.rename(`client/public/documents/${req.files[i].filename}`,`client/public/documents/${categoryG.title}/`+fileName,()=>{console.log('callback rename')})
+        fs.rename(`client/build/documents/${req.files[i].filename}`,`client/build/documents/${categoryG.title}/`+fileName,()=>{console.log('callback rename')})
      })
       return res.status(201).json({message:'Все файлы добавлены'})
 

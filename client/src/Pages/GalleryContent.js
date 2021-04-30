@@ -26,7 +26,7 @@ function GalleryContent() {
     return(
       <>
         
-                <Gallery additionalClass={"left-align"} titleSection={category.title} title={category.title} text={category.description} images={images} loading={loading}/>
+                <Gallery additionalClass={"left-align"} date={category.createdAt} titleSection={category.title} title={category.title} text={category.description} images={images} loading={loading}/>
         
       </>
 

@@ -44,7 +44,7 @@ async function start() {
 }
 app.use(express.json({ extended: true }))
 
-app.use('/', indexRoutes);
+
 app.use('/api/auth', authRoutes)
 app.use('/api/articles-edit',articlesRoutes)
 app.use('/api/galleryCategory-edit',galleryCategoryRoutes)

@@ -61,7 +61,7 @@ function Documents(){
                     return(
                      <li>
                          <div class="collapsible-header">{category.title}</div>
-                         <div class="collapsible-body" ><span>Выбирите файл для скачивания</span></div>
+                         <div class="collapsible-body" ><span>Выберите файл для скачивания</span></div>
                          {files.filter((val)=>{
                         if (val.category===category._id){
                             return val

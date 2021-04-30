@@ -2,7 +2,8 @@ import React ,{useEffect,useContext,useState} from 'react'
 import { AuthContext } from '../context/AuthContext'
 import {useHttp} from "../hooks/http.hook" 
 import {useMessage} from "../hooks/message.hook"
-
+import {Loader} from "../components/Loader"
+ 
 function Upload(){
     const auth = useContext(AuthContext)
     const message = useMessage()
@@ -40,6 +41,9 @@ function Upload(){
            
         }
     }
+if (loading){
+	return <Loader/>
+}
     return(
         <>
              <div className="row">

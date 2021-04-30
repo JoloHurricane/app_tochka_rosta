@@ -12,7 +12,6 @@ const galleryImg = require('../models/GalleryImg')
 
 const router = Router()
 
-
 let someId = ''
 let categoryG = {}
 
@@ -52,26 +51,20 @@ router.get('/gallery-categories', async (req, res) => {
     
     } catch (e) {
      return res.status(500).json({ message: `Что-то пошло не так, перезагрузите страницу` })
-    }
+ ьььььььььььььь   }
   })
 
 router.post('/update/:id', async (req, res) => {
     try {
       const category = await galleryCategory.findById(req.params.id)
       const {description,title,date} = req.body
-     
-      if (category.img!=='placeholder.jpg'){
-	fs.unlink(`client/build/images/galleryCategory/${category.img}`,(err)=>{if (err) console.log(err)
-	else console.log(`${category.img} deleted`)
-
-})
-}
+      fs.rename(`client/build/images/galleryCategory/${category.title}`,`client/build/images/galleryCategory/${title}`,()=>{console.log('callback rename')})
       category.title = title
       category.description = description
       category.createdAt = date
       await category.save()
       someId = category._id
-   return   res.status(201).json({ message: 'Категория изменена' , 
+    return res.status(201).json({ message: 'Категория изменена' , 
       title: category.title,
       text: category.description,
       date: category.createdAt,
@@ -95,11 +88,11 @@ router.post('/delete/:id', async (req, res) => {
         else console.log(`${category.img} deleted`);
       });
       fs.readdir(directory, (err, files) => {
-      if (err) console.log(err) 
+      if (err) throw err
 
       for (const file of files) {
           fs.unlink(path.join(directory, file), err => {
-          if (err) console.log(err)
+          if (err) throw err
       })
     }
       fs.rmdir(`client/build/images/galleryCategory/${category.title}`,()=>(console.log('deleted')))

@@ -50,8 +50,8 @@ return(
     <>
     <div style={{backgroundColor:"#000",position:"relative"}}>
    
-      <div className="parallax-container">
-            <div className="parallax"><img className="" alt="asd" src="/images/contact2.jpeg"></img></div>
+      <div className="parallax-container" style={{opacity:'55% !important'}}>
+            <div className="parallax"><img className="" alt="asd" src="../../images/contact2.jpeg"></img></div>
           
         </div>
         <h2   className="title-parallax color white-text center-align">Контакты</h2> 
