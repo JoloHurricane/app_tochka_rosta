@@ -32,7 +32,7 @@ function GalleryImageFormFields(props){
                   })}
                         
                     </select>
-                    <label>Выбирите категорию</label>
+                    <label>Выберите категорию</label>
                 </div>
                     {/* <div class="input-field col s8 offset-s2 l6 offset-l4  ">
                         <input id="last_name" type="text" class=""/>

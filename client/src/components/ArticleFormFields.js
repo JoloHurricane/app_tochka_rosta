@@ -33,7 +33,7 @@ function ArticleFormFields(props){
                     </select>
 
 
-                    <label>Выбирите Cтатью</label>
+                    <label>Выберите Cтатью</label>
                 </div>
                     <div class="input-field col s8 offset-s2 l6 offset-l4  ">
                         <input id="title" name="title" type="text" className=""
